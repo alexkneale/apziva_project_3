@@ -4,6 +4,19 @@ This project leverages modern Natural Language Processing (NLP) techniques to au
 
 ---
 
+## 📚 Table of Contents
+
+- [Project Overview](#-project-overview)
+- [Motivation](#motivation)
+- [Data Description](#data-description)
+- [Methodology](#-methodology)
+- [Technologies & Libraries Used](#-technologies--libraries-used)
+- [Results](#-results)
+- [Future Work](#-future-work)
+- [License](#-license)
+
+---
+
 ## 📘 Project Overview
 
 The project is structured into three major sections:
@@ -24,12 +37,33 @@ The project is structured into three major sections:
 
 ---
 
+## Motivation
+
+Recruitment agencies often face the daunting challenge of filtering through hundreds or thousands of resumes to find a handful of qualified candidates for specific roles. This process is not only time-consuming but also prone to human bias and inconsistency.
+
+The goal of this project is to explore whether modern NLP methods can intelligently match candidates to job descriptions based on semantic relevance, thereby automating the first stages of candidate screening. A successful system would help HR teams reduce manual effort, ensure consistency in evaluation, and highlight strong candidates who may otherwise be overlooked.
+
+---
+
+## Data Description
+
+The dataset used in this project contains 104 candidate records. Each record includes various features that represent a candidate’s LinkedIn profile or resume content.
+
+Key columns in the dataset:
+
+- `job_title`: The candidate's current job title
+- `location`: The geographic location of the candidate
+- `connections`: A numerical indicator of the candidate's professional connections (between 0 and 500+)
+- `fit`: A column left empty by the provider, presumably for use in modeling
+---
+
 ## 🔍 Methodology
 
 ### 1. Data Preparation
 - Load candidate dataset (`104` records)
 - Remove/handle empty columns (e.g., `'fit'`)
-- Normalize and preprocess candidate CV texts
+- Normalize the `connections` feature
+- Merge the `job_title` and `location` features
 
 ### 2. NLP Matching Pipeline
 - Embed candidate CVs and job keywords using 5 different vectorization methods
@@ -57,14 +91,8 @@ The project is structured into three major sections:
 
 ## 📊 Results
 
-- All vectorization methods produced viable similarity rankings.
-- BERT-based embeddings outperformed traditional methods in terms of semantic relevance.
+- All vectorization methods produced viable similarity rankings. However, **TF-IDF**, **Word2Vec**, and **BERT** encoders marginally outperformed the other vectorization methods.
 - The pairwise ranker successfully learned to generalize rankings with reasonably low loss, although improvements are possible with more data and fine-tuning.
-
----
-
-## 📂 File Structure
-
 
 ---
 
@@ -74,12 +102,6 @@ The project is structured into three major sections:
 - Introduce human-labeled relevance scores to improve supervision
 - Fine-tune transformer-based embeddings for domain-specific context
 - Deploy as an API or integrate into a web-based recruitment dashboard
-
----
-
-## 🤝 Acknowledgements
-
-This project was inspired by real-world recruitment challenges. Thanks to the hypothetical HR agency dataset and open-source NLP resources for enabling this research.
 
 ---
 
